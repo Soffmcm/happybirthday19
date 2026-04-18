@@ -247,23 +247,14 @@ export function Envelope({ letterContent }: EnvelopeProps) {
                         style={{
                           top: "55%",
                           zIndex: 4,
-                          width: "52px",
-                          height: "52px",
-                          borderRadius: "50%",
-                          background:
-                            "radial-gradient(circle at 35% 30%, oklch(0.7 0.22 18), oklch(0.45 0.2 15))",
-                          boxShadow:
-                            "0 4px 12px oklch(0 0 0 / 0.4), inset -3px -4px 8px oklch(0 0 0 / 0.35), inset 2px 2px 5px oklch(1 0 0 / 0.25)",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          fontFamily: "var(--font-script)",
-                          fontSize: "1.6rem",
-                          color: "oklch(0.96 0.03 60)",
-                          textShadow: "0 1px 2px oklch(0 0 0 / 0.4)",
+                          fontSize: "3rem",
+                          lineHeight: 1,
+                          color: "oklch(0.82 0.09 15)",
+                          filter:
+                            "drop-shadow(0 3px 6px oklch(0.4 0.1 20 / 0.25))",
                         }}
                       >
-                        ♡
+                        ♥
                       </motion.div>
                     )}
                   </AnimatePresence>
