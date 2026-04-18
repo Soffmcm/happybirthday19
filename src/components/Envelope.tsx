@@ -7,9 +7,12 @@ interface EnvelopeProps {
 
 type Stage = "front" | "back" | "open" | "letter";
 
-const ENV_BODY = "linear-gradient(135deg, oklch(0.78 0.14 15) 0%, oklch(0.7 0.18 12) 100%)";
-const ENV_FLAP = "linear-gradient(160deg, oklch(0.82 0.13 16) 0%, oklch(0.72 0.17 12) 100%)";
-const ENV_FLAP_INSIDE = "linear-gradient(180deg, oklch(0.66 0.2 10) 0%, oklch(0.58 0.22 8) 100%)";
+// White / cream envelope palette
+const ENV_BODY = "linear-gradient(160deg, oklch(0.985 0.005 80) 0%, oklch(0.94 0.015 75) 100%)";
+const ENV_FLAP = "linear-gradient(180deg, oklch(0.97 0.008 80) 0%, oklch(0.91 0.018 75) 100%)";
+const ENV_FLAP_INSIDE =
+  "linear-gradient(180deg, oklch(0.88 0.02 70) 0%, oklch(0.82 0.025 65) 100%)";
+const ENV_EDGE = "oklch(0.82 0.02 70)";
 
 export function Envelope({ letterContent }: EnvelopeProps) {
   const [stage, setStage] = useState<Stage>("front");
@@ -17,11 +20,13 @@ export function Envelope({ letterContent }: EnvelopeProps) {
   const handleEnvelopeClick = () => {
     if (stage === "front") {
       setStage("back");
-      setTimeout(() => setStage("open"), 900);
+    } else if (stage === "back") {
+      setStage("open");
     }
   };
 
-  const handlePaperClick = () => {
+  const handlePaperClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
     if (stage === "open") setStage("letter");
   };
 
@@ -47,40 +52,34 @@ export function Envelope({ letterContent }: EnvelopeProps) {
                 width: W,
                 height: H,
                 transformStyle: "preserve-3d",
+                cursor: stage === "open" ? "default" : "pointer",
               }}
               animate={{ rotateY: stage === "front" ? 0 : 180 }}
               transition={{ duration: 0.9, ease: "easeInOut" }}
               onClick={handleEnvelopeClick}
-              whileHover={stage === "front" ? { scale: 1.03, y: -4 } : {}}
+              whileHover={stage === "front" || stage === "back" ? { scale: 1.03, y: -4 } : {}}
             >
-              {/* ====== FRONT FACE (sealed envelope, address side) ====== */}
+              {/* ====== FRONT FACE (address side) ====== */}
               <div
-                className="absolute inset-0 cursor-pointer overflow-hidden"
+                className="absolute inset-0 overflow-hidden"
                 style={{
                   backfaceVisibility: "hidden",
                   background: ENV_BODY,
                   borderRadius: "6px",
+                  border: `1px solid ${ENV_EDGE}`,
                   boxShadow:
-                    "inset 0 0 40px oklch(0 0 0 / 0.15), inset 0 2px 4px oklch(1 0 0 / 0.25)",
+                    "inset 0 0 30px oklch(0 0 0 / 0.06), inset 0 2px 3px oklch(1 0 0 / 0.5)",
                 }}
               >
-                {/* Subtle paper grain */}
-                <div
-                  className="absolute inset-0 opacity-30"
-                  style={{
-                    background:
-                      "radial-gradient(circle at 30% 20%, oklch(1 0 0 / 0.2), transparent 60%)",
-                  }}
-                />
-
                 {/* Stamp */}
                 <div
                   className="absolute right-4 top-4 flex items-center justify-center"
                   style={{
                     width: "62px",
                     height: "76px",
-                    background: "oklch(0.96 0.03 60)",
-                    border: "2px dashed oklch(0.7 0.18 12 / 0.6)",
+                    background:
+                      "linear-gradient(135deg, oklch(0.92 0.08 20) 0%, oklch(0.78 0.16 15) 100%)",
+                    border: "2px dashed oklch(0.99 0.01 80)",
                     borderRadius: "3px",
                     boxShadow: "0 2px 6px oklch(0 0 0 / 0.15)",
                   }}
@@ -89,7 +88,7 @@ export function Envelope({ letterContent }: EnvelopeProps) {
                     style={{
                       fontFamily: "var(--font-script)",
                       fontSize: "1.8rem",
-                      color: "var(--rose)",
+                      color: "oklch(0.99 0.01 80)",
                       lineHeight: 1,
                     }}
                   >
@@ -97,12 +96,12 @@ export function Envelope({ letterContent }: EnvelopeProps) {
                   </div>
                 </div>
 
-                {/* Address lines */}
+                {/* Address */}
                 <div
                   className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center"
                   style={{
                     fontFamily: "var(--font-script)",
-                    color: "oklch(0.96 0.03 60)",
+                    color: "var(--ink)",
                   }}
                 >
                   <div style={{ fontSize: "clamp(1.5rem, 4.5vw, 2.4rem)", lineHeight: 1.1 }}>
@@ -113,19 +112,23 @@ export function Envelope({ letterContent }: EnvelopeProps) {
                     style={{
                       width: "60%",
                       height: "1px",
-                      background: "oklch(0.96 0.03 60 / 0.5)",
+                      background: "oklch(0.4 0.05 30 / 0.3)",
                     }}
                   />
                   <div
                     className="mt-2 text-[10px] tracking-[0.4em] uppercase"
-                    style={{ fontFamily: "var(--font-display)", opacity: 0.85 }}
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      color: "var(--rose)",
+                      opacity: 0.85,
+                    }}
                   >
                     open me ♡
                   </div>
                 </div>
               </div>
 
-              {/* ====== BACK FACE (flap side, with V seams) ====== */}
+              {/* ====== BACK FACE (flap side) ====== */}
               <div
                 className="absolute inset-0 overflow-hidden"
                 style={{
@@ -133,48 +136,28 @@ export function Envelope({ letterContent }: EnvelopeProps) {
                   transform: "rotateY(180deg)",
                   background: ENV_BODY,
                   borderRadius: "6px",
-                  boxShadow: "inset 0 0 40px oklch(0 0 0 / 0.15)",
+                  border: `1px solid ${ENV_EDGE}`,
+                  boxShadow: "inset 0 0 30px oklch(0 0 0 / 0.06)",
                 }}
               >
-                {/* Bottom triangular flap (folded up, visible on back) */}
+                {/* Horizontal seam where flap meets body */}
                 <div
-                  className="absolute left-0 right-0 bottom-0"
+                  className="absolute left-0 right-0"
                   style={{
-                    height: "55%",
-                    background: ENV_FLAP,
-                    clipPath: "polygon(0 100%, 100% 100%, 50% 0)",
-                    boxShadow: "0 -2px 6px oklch(0 0 0 / 0.15)",
-                  }}
-                />
-                {/* Left side flap */}
-                <div
-                  className="absolute left-0 top-0 bottom-0"
-                  style={{
-                    width: "50%",
-                    background: ENV_FLAP,
-                    clipPath: "polygon(0 0, 100% 50%, 0 100%)",
-                    opacity: 0.92,
-                  }}
-                />
-                {/* Right side flap */}
-                <div
-                  className="absolute right-0 top-0 bottom-0"
-                  style={{
-                    width: "50%",
-                    background: ENV_FLAP,
-                    clipPath: "polygon(100% 0, 100% 100%, 0 50%)",
-                    opacity: 0.92,
+                    top: "55%",
+                    height: "1px",
+                    background: "oklch(0.6 0.03 60 / 0.25)",
                   }}
                 />
 
-                {/* Paper sliding out (only when open) */}
+                {/* Paper sliding out — only visible AFTER flap opens */}
                 <AnimatePresence>
                   {stage === "open" && (
                     <motion.div
                       key="paper"
-                      initial={{ y: 30, opacity: 0 }}
-                      animate={{ y: -40, opacity: 1 }}
-                      transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
+                      initial={{ y: 20, opacity: 0 }}
+                      animate={{ y: -50, opacity: 1 }}
+                      transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
                       className="paper-texture absolute left-1/2 top-1/2 cursor-pointer"
                       style={{
                         width: "85%",
@@ -183,11 +166,8 @@ export function Envelope({ letterContent }: EnvelopeProps) {
                         borderRadius: "3px",
                         zIndex: 1,
                       }}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handlePaperClick();
-                      }}
-                      whileHover={{ y: -55, scale: 1.02 }}
+                      onClick={handlePaperClick}
+                      whileHover={{ y: -65, scale: 1.02 }}
                     >
                       <div className="flex h-full w-full flex-col items-center justify-center px-6 text-center">
                         <div
@@ -204,28 +184,36 @@ export function Envelope({ letterContent }: EnvelopeProps) {
                           className="mt-2 text-[10px] tracking-[0.3em] uppercase"
                           style={{ color: "var(--ink)", opacity: 0.5 }}
                         >
-                          click to open
+                          click to read
                         </div>
                       </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
 
-                {/* Top flap (the one that opens) */}
+                {/* TOP TRIANGULAR FLAP (the part that opens) */}
                 <motion.div
                   className="absolute left-0 right-0 top-0"
                   style={{
                     height: "55%",
-                    background: ENV_FLAP,
-                    clipPath: "polygon(0 0, 100% 0, 50% 100%)",
                     transformOrigin: "top",
                     zIndex: 3,
-                    boxShadow: "0 4px 10px oklch(0 0 0 / 0.25)",
                   }}
-                  animate={{ rotateX: stage === "open" ? -180 : 0 }}
-                  transition={{ duration: 0.8, ease: "easeInOut" }}
+                  animate={{ rotateX: stage === "open" ? -175 : 0 }}
+                  transition={{ duration: 0.9, ease: "easeInOut" }}
                 >
-                  {/* Inside of the flap (visible when opened) */}
+                  {/* Outside of flap (visible when closed) */}
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background: ENV_FLAP,
+                      clipPath: "polygon(0 0, 100% 0, 50% 100%)",
+                      backfaceVisibility: "hidden",
+                      filter: "drop-shadow(0 3px 6px oklch(0 0 0 / 0.18))",
+                      borderTop: `1px solid ${ENV_EDGE}`,
+                    }}
+                  />
+                  {/* Inside of flap (visible when opened) */}
                   <div
                     className="absolute inset-0"
                     style={{
@@ -237,33 +225,55 @@ export function Envelope({ letterContent }: EnvelopeProps) {
                   />
                 </motion.div>
 
-                {/* Wax seal (only while flap is closed) */}
+                {/* Wax seal — disappears when flap opens */}
                 <AnimatePresence>
                   {stage === "back" && (
                     <motion.div
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
                       exit={{ scale: 0, opacity: 0 }}
-                      className="absolute left-1/2 top-[42%] -translate-x-1/2 -translate-y-1/2"
+                      transition={{ duration: 0.4, delay: 0.5 }}
+                      className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2"
                       style={{
+                        top: "55%",
                         zIndex: 4,
-                        width: "44px",
-                        height: "44px",
+                        width: "52px",
+                        height: "52px",
                         borderRadius: "50%",
                         background:
-                          "radial-gradient(circle at 35% 30%, oklch(0.65 0.22 18), oklch(0.45 0.2 15))",
+                          "radial-gradient(circle at 35% 30%, oklch(0.7 0.22 18), oklch(0.45 0.2 15))",
                         boxShadow:
-                          "0 4px 10px oklch(0 0 0 / 0.4), inset -3px -4px 8px oklch(0 0 0 / 0.3), inset 2px 2px 4px oklch(1 0 0 / 0.2)",
+                          "0 4px 12px oklch(0 0 0 / 0.4), inset -3px -4px 8px oklch(0 0 0 / 0.35), inset 2px 2px 5px oklch(1 0 0 / 0.25)",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
                         fontFamily: "var(--font-script)",
-                        fontSize: "1.4rem",
+                        fontSize: "1.6rem",
                         color: "oklch(0.96 0.03 60)",
                         textShadow: "0 1px 2px oklch(0 0 0 / 0.4)",
                       }}
                     >
                       ♡
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                {/* Hint to click and open */}
+                <AnimatePresence>
+                  {stage === "back" && (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 0.7 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ delay: 1.2, duration: 0.8 }}
+                      className="click-hint absolute bottom-4 left-1/2 -translate-x-1/2 text-[10px] tracking-[0.3em] uppercase"
+                      style={{
+                        fontFamily: "var(--font-display)",
+                        color: "var(--rose)",
+                        zIndex: 5,
+                      }}
+                    >
+                      tap to open ♡
                     </motion.div>
                   )}
                 </AnimatePresence>
