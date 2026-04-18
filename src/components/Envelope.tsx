@@ -155,22 +155,22 @@ export function Envelope({ letterContent }: EnvelopeProps) {
                     {stage === "open" && (
                       <motion.div
                         key="paper"
-                        initial={{ x: "-50%", y: "-30%", opacity: 0 }}
-                        animate={{ x: "-50%", y: "-65%", opacity: 1 }}
-                        transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+                        initial={{ x: "-50%", y: "0%", opacity: 0 }}
+                        animate={{ x: "-50%", y: "-55%", opacity: 1 }}
+                        transition={{ duration: 0.9, delay: 0.4, ease: "easeOut" }}
                         className="paper-texture absolute cursor-pointer"
                         style={{
                           left: "50%",
                           top: "50%",
-                          width: "85%",
-                          height: "75%",
+                          width: "82%",
+                          height: "78%",
                           borderRadius: "3px",
                           zIndex: 1,
                         }}
                         onClick={handlePaperClick}
-                        whileHover={{ x: "-50%", y: "-72%", scale: 1.02 }}
+                        whileHover={{ x: "-50%", y: "-62%", scale: 1.02 }}
                       >
-                        <div className="flex h-full w-full flex-col items-center justify-center px-6 text-center">
+                        <div className="flex h-full w-full flex-col items-center justify-center px-6 pb-12 text-center">
                           <div
                             style={{
                               fontFamily: "var(--font-script)",
@@ -191,6 +191,20 @@ export function Envelope({ letterContent }: EnvelopeProps) {
                       </motion.div>
                     )}
                   </AnimatePresence>
+
+                  {/* POCKET — bottom half of envelope that the paper slides out of */}
+                  <div
+                    className="absolute left-0 right-0 bottom-0 pointer-events-none"
+                    style={{
+                      top: "50%",
+                      background: ENV_BODY,
+                      borderTop: `1px solid ${ENV_EDGE}`,
+                      borderRadius: "0 0 6px 6px",
+                      boxShadow:
+                        "inset 0 6px 12px oklch(0 0 0 / 0.12), inset 0 1px 0 oklch(1 0 0 / 0.4)",
+                      zIndex: 2,
+                    }}
+                  />
 
                   <motion.div
                     className="absolute left-0 right-0 top-0"
