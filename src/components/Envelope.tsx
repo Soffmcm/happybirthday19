@@ -69,6 +69,9 @@ export function Envelope({ letterContent }: EnvelopeProps) {
                   border: `1px solid ${ENV_EDGE}`,
                   boxShadow:
                     "inset 0 0 30px oklch(0 0 0 / 0.06), inset 0 2px 3px oklch(1 0 0 / 0.5)",
+                  opacity: stage === "front" ? 1 : 0,
+                  pointerEvents: stage === "front" ? "auto" : "none",
+                  transition: "opacity 0.2s ease",
                 }}
               >
                 {/* Stamp */}
@@ -138,6 +141,9 @@ export function Envelope({ letterContent }: EnvelopeProps) {
                   borderRadius: "6px",
                   border: `1px solid ${ENV_EDGE}`,
                   boxShadow: "inset 0 0 30px oklch(0 0 0 / 0.06)",
+                  opacity: stage === "front" ? 0 : 1,
+                  pointerEvents: stage === "front" ? "none" : "auto",
+                  transition: "opacity 0.2s ease",
                 }}
               >
                 {/* Horizontal seam where flap meets body */}
