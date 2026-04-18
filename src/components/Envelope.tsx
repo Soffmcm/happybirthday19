@@ -149,7 +149,7 @@ export function Envelope({ letterContent }: EnvelopeProps) {
                     zIndex: 2,
                     boxShadow: "0 4px 12px oklch(0 0 0 / 0.25)",
                   }}
-                  animate={{ rotateX: stage === "open" || stage === "letter" ? -180 : 0 }}
+                  animate={{ rotateX: stage === "open" ? -180 : 0 }}
                   transition={{ duration: 0.7, ease: "easeInOut" }}
                 />
 
