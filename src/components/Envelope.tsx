@@ -247,14 +247,27 @@ export function Envelope({ letterContent }: EnvelopeProps) {
                         style={{
                           top: "55%",
                           zIndex: 4,
-                          fontSize: "3rem",
-                          lineHeight: 1,
-                          color: "oklch(0.82 0.09 15)",
                           filter:
-                            "drop-shadow(0 3px 6px oklch(0.4 0.1 20 / 0.25))",
+                            "drop-shadow(0 4px 8px oklch(0.4 0.1 20 / 0.28))",
                         }}
                       >
-                        ♥
+                        <svg
+                          width="78"
+                          height="72"
+                          viewBox="0 0 100 92"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <defs>
+                            <radialGradient id="heartGrad" cx="35%" cy="30%" r="75%">
+                              <stop offset="0%" stopColor="oklch(0.92 0.06 15)" />
+                              <stop offset="100%" stopColor="oklch(0.78 0.11 15)" />
+                            </radialGradient>
+                          </defs>
+                          <path
+                            d="M50 88 C 18 64, 2 44, 2 26 C 2 11, 14 2, 27 2 C 37 2, 45 8, 50 18 C 55 8, 63 2, 73 2 C 86 2, 98 11, 98 26 C 98 44, 82 64, 50 88 Z"
+                            fill="url(#heartGrad)"
+                          />
+                        </svg>
                       </motion.div>
                     )}
                   </AnimatePresence>
