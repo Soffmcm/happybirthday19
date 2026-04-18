@@ -7,15 +7,15 @@ import { Envelope } from "@/components/Envelope";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Happy Birthday My Love ♡" },
+      { title: "Happy Birthday Babyyy ♡" },
       {
         name: "description",
-        content: "A little something I made just for you on your 19th birthday.",
+        content: "Eventhough I can't be there to give you a birthday gift, I still wanted to make you something.",
       },
       { property: "og:title", content: "Happy Birthday My Love ♡" },
       {
         property: "og:description",
-        content: "A little something I made just for you on your 19th birthday.",
+        content: "Eventhough I can't be there to give you a birthday gift, I still wanted to make you something.",
       },
     ],
     links: [
@@ -119,7 +119,7 @@ function Index() {
                   opacity: 0.7,
                 }}
               >
-                tap anywhere to continue ♡
+                (tap anywhere to continue ♡)
               </motion.div>
             </div>
           </motion.section>
@@ -150,7 +150,7 @@ function Index() {
               >
                 I made you
                 <br />
-                something
+                something...
                 <span style={{ color: "var(--rose)" }}>...</span>
               </motion.h2>
 
@@ -165,7 +165,7 @@ function Index() {
                   opacity: 0.7,
                 }}
               >
-                tap to see ♡
+                (tap to see ♡)
               </motion.div>
             </div>
           </motion.section>
@@ -199,13 +199,13 @@ function LetterContent() {
             lineHeight: 1.1,
           }}
         >
-          My dearest love,
+          Happy 19th Birthday my lovee,
         </div>
         <div
           className="mt-2 text-xs tracking-[0.3em] uppercase"
           style={{ opacity: 0.5 }}
         >
-          on your 19th birthday
+          I hope it's a really good one
         </div>
       </header>
 
