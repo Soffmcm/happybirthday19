@@ -155,19 +155,20 @@ export function Envelope({ letterContent }: EnvelopeProps) {
                     {stage === "open" && (
                       <motion.div
                         key="paper"
-                        initial={{ y: 20, opacity: 0 }}
-                        animate={{ y: -50, opacity: 1 }}
+                        initial={{ x: "-50%", y: "-30%", opacity: 0 }}
+                        animate={{ x: "-50%", y: "-65%", opacity: 1 }}
                         transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-                        className="paper-texture absolute left-1/2 top-1/2 cursor-pointer"
+                        className="paper-texture absolute cursor-pointer"
                         style={{
+                          left: "50%",
+                          top: "50%",
                           width: "85%",
                           height: "75%",
-                          transform: "translate(-50%, -50%)",
                           borderRadius: "3px",
                           zIndex: 1,
                         }}
                         onClick={handlePaperClick}
-                        whileHover={{ y: -65, scale: 1.02 }}
+                        whileHover={{ x: "-50%", y: "-72%", scale: 1.02 }}
                       >
                         <div className="flex h-full w-full flex-col items-center justify-center px-6 text-center">
                           <div
