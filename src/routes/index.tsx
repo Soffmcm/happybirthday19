@@ -175,6 +175,19 @@ function Index() {
           </motion.section>
         )}
 
+        {scene === "candles" && (
+          <motion.section
+            key="candles"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8 }}
+            className="relative z-10 h-full w-full"
+          >
+            <Cake onBlownOut={() => setScene("envelope")} />
+          </motion.section>
+        )}
+
         {scene === "envelope" && (
           <motion.section
             key="envelope"
