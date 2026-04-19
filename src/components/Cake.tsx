@@ -55,11 +55,16 @@ export function Cake({ onBlownOut }: CakeProps) {
 
   return (
     <div
-      className="relative flex h-full w-full flex-col items-center justify-center px-6"
+      className={`relative flex h-full w-full flex-col items-center justify-center px-6 ${blownOut ? "cursor-pointer" : ""}`}
       onMouseMove={(e) => handleMove(e.clientX)}
       onTouchMove={(e) => {
         if (e.touches[0]) handleMove(e.touches[0].clientX);
       }}
+      onClick={() => {
+        if (blownOut) onBlownOut();
+      }}
+      role={blownOut ? "button" : undefined}
+      tabIndex={blownOut ? 0 : -1}
     >
       <AnimatePresence mode="wait">
         {!blownOut ? (
@@ -135,6 +140,22 @@ export function Cake({ onBlownOut }: CakeProps) {
             />
           </div>
         </div>
+      )}
+
+      {blownOut && (
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 0.8 }}
+          className="click-hint mt-8 text-xs tracking-[0.3em] uppercase"
+          style={{
+            fontFamily: "var(--font-display)",
+            color: "var(--rose)",
+            opacity: 0.75,
+          }}
+        >
+          (tap anywhere to continue ♡)
+        </motion.p>
       )}
     </div>
   );
