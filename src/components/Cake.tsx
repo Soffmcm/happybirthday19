@@ -145,52 +145,141 @@ function CakeSVG({ progress, blownOut }: { progress: number; blownOut: boolean }
   const intensity = Math.max(0, 1 - progress / 100);
   const flicker = 0.85 + Math.random() * 0.3;
 
+  // Color tokens
+  const sponge = "oklch(0.93 0.06 75)"; // warm cream/vanilla
+  const spongeShade = "oklch(0.86 0.07 70)";
+  const frosting = "oklch(0.86 0.11 15)"; // pastel pink
+  const frostingShade = "oklch(0.78 0.13 15)";
+  const frostingHi = "oklch(0.93 0.07 15)";
+  const dotDark = "oklch(0.45 0.12 25)";
+  const dotOrange = "oklch(0.78 0.15 55)";
+
   return (
     <div className="relative">
       <svg
-        width="320"
-        height="280"
-        viewBox="0 0 320 280"
-        style={{ maxWidth: "80vw", height: "auto" }}
+        width="440"
+        height="380"
+        viewBox="0 0 440 380"
+        style={{ maxWidth: "92vw", height: "auto" }}
       >
+        {/* Soft shadow under cake */}
+        <ellipse cx="220" cy="358" rx="180" ry="10" fill="oklch(0.55 0.05 25 / 0.18)" />
         {/* Plate */}
-        <ellipse cx="160" cy="260" rx="140" ry="10" fill="oklch(0.85 0.02 25 / 0.5)" />
+        <ellipse cx="220" cy="352" rx="190" ry="12" fill={frosting} opacity="0.55" />
+        <ellipse cx="220" cy="350" rx="180" ry="9" fill={frostingHi} opacity="0.7" />
 
-        {/* Bottom tier */}
-        <rect x="40" y="180" width="240" height="70" rx="6" fill="oklch(0.95 0.04 30)" />
-        <rect x="40" y="180" width="240" height="10" fill="oklch(0.88 0.08 25)" />
-        {/* Drips */}
-        {[60, 100, 140, 180, 220, 260].map((x, i) => (
-          <path
-            key={i}
-            d={`M ${x} 190 Q ${x + 4} ${200 + (i % 2) * 6} ${x + 8} 195`}
-            fill="oklch(0.88 0.08 25)"
-          />
+        {/* ========== BOTTOM TIER ========== */}
+        {/* Sponge body (rounded sides) */}
+        <path
+          d="M 50 230
+             Q 50 218 64 215
+             L 376 215
+             Q 390 218 390 230
+             L 390 332
+             Q 390 348 220 348
+             Q 50 348 50 332 Z"
+          fill={sponge}
+        />
+        {/* Sponge horizontal layer line */}
+        <path
+          d="M 58 285 Q 220 295 382 285"
+          stroke={spongeShade}
+          strokeWidth="2"
+          fill="none"
+          opacity="0.5"
+        />
+        {/* Frosting top dome */}
+        <ellipse cx="220" cy="218" rx="170" ry="22" fill={frosting} />
+        <ellipse cx="220" cy="213" rx="150" ry="14" fill={frostingHi} opacity="0.7" />
+        {/* Drip frosting around bottom tier top */}
+        <path
+          d="M 52 228
+             Q 70 252 90 232
+             Q 108 264 128 234
+             Q 148 258 168 230
+             Q 188 262 208 234
+             Q 228 256 248 232
+             Q 268 264 288 234
+             Q 308 258 328 230
+             Q 348 262 368 232
+             Q 382 250 388 228
+             L 388 218
+             L 52 218 Z"
+          fill={frosting}
+        />
+        {/* Drip highlights */}
+        <path
+          d="M 52 228 Q 70 252 90 232 Q 108 264 128 234 Q 148 258 168 230 Q 188 262 208 234 Q 228 256 248 232 Q 268 264 288 234 Q 308 258 328 230 Q 348 262 368 232 Q 382 250 388 228"
+          stroke={frostingShade}
+          strokeWidth="1.5"
+          fill="none"
+          opacity="0.55"
+        />
+        {/* Sprinkle dots on bottom tier */}
+        {[
+          [80, 305, dotDark], [110, 320, dotOrange], [140, 300, dotDark],
+          [170, 318, dotOrange], [200, 305, dotDark], [230, 322, dotOrange],
+          [260, 302, dotDark], [290, 320, dotDark], [320, 305, dotOrange],
+          [350, 318, dotDark],
+        ].map(([x, y, c], i) => (
+          <circle key={`b-${i}`} cx={x as number} cy={y as number} r="2.8" fill={c as string} />
         ))}
 
-        {/* Top tier */}
-        <rect x="90" y="120" width="140" height="65" rx="6" fill="oklch(0.97 0.03 30)" />
-        <rect x="90" y="120" width="140" height="8" fill="oklch(0.88 0.08 25)" />
-        {[110, 140, 170, 200].map((x, i) => (
-          <path
-            key={i}
-            d={`M ${x} 128 Q ${x + 3} ${136 + (i % 2) * 4} ${x + 6} 132`}
-            fill="oklch(0.88 0.08 25)"
-          />
+        {/* ========== TOP TIER ========== */}
+        {/* Sponge body */}
+        <path
+          d="M 110 130
+             Q 110 120 122 117
+             L 318 117
+             Q 330 120 330 130
+             L 330 210
+             Q 330 222 220 222
+             Q 110 222 110 210 Z"
+          fill={sponge}
+        />
+        {/* Sponge layer line */}
+        <path
+          d="M 116 175 Q 220 184 324 175"
+          stroke={spongeShade}
+          strokeWidth="2"
+          fill="none"
+          opacity="0.5"
+        />
+        {/* Top frosting dome */}
+        <ellipse cx="220" cy="120" rx="110" ry="16" fill={frosting} />
+        <ellipse cx="220" cy="116" rx="92" ry="10" fill={frostingHi} opacity="0.75" />
+        {/* Drip frosting around top tier */}
+        <path
+          d="M 112 128
+             Q 128 148 146 130
+             Q 162 156 180 132
+             Q 198 152 216 130
+             Q 234 154 252 132
+             Q 270 156 288 130
+             Q 306 150 324 132
+             Q 332 144 328 124
+             L 112 124 Z"
+          fill={frosting}
+        />
+        <path
+          d="M 112 128 Q 128 148 146 130 Q 162 156 180 132 Q 198 152 216 130 Q 234 154 252 132 Q 270 156 288 130 Q 306 150 324 132"
+          stroke={frostingShade}
+          strokeWidth="1.5"
+          fill="none"
+          opacity="0.55"
+        />
+        {/* Sprinkles on top tier */}
+        {[
+          [135, 195, dotDark], [165, 205, dotOrange], [195, 195, dotDark],
+          [225, 207, dotOrange], [255, 195, dotDark], [285, 205, dotOrange],
+          [305, 198, dotDark],
+        ].map(([x, y, c], i) => (
+          <circle key={`t-${i}`} cx={x as number} cy={y as number} r="2.5" fill={c as string} />
         ))}
 
-        {/* Decorations - small dots */}
-        {[60, 90, 120, 150, 180, 210, 240, 270].map((x) => (
-          <circle key={`d1-${x}`} cx={x} cy="220" r="3" fill="oklch(0.88 0.08 25)" />
-        ))}
-        {[110, 140, 170, 200].map((x) => (
-          <circle key={`d2-${x}`} cx={x} cy="160" r="2.5" fill="oklch(0.88 0.08 25)" />
-        ))}
-
-        {/* Candle "1" */}
-        <Candle x={130} flameIntensity={intensity} flicker={flicker} blownOut={blownOut} digit="1" />
-        {/* Candle "9" */}
-        <Candle x={180} flameIntensity={intensity} flicker={flicker} blownOut={blownOut} digit="9" />
+        {/* ========== CANDLES (kept the same style) ========== */}
+        <Candle x={195} flameIntensity={intensity} flicker={flicker} blownOut={blownOut} digit="1" />
+        <Candle x={245} flameIntensity={intensity} flicker={flicker} blownOut={blownOut} digit="9" />
       </svg>
 
       {/* Smoke when blown out */}
@@ -199,30 +288,30 @@ function CakeSVG({ progress, blownOut }: { progress: number; blownOut: boolean }
           <motion.div
             className="absolute"
             style={{
-              left: "calc(50% - 20px)",
-              top: "20px",
-              width: "8px",
-              height: "8px",
+              left: "calc(50% - 28px)",
+              top: "30px",
+              width: "10px",
+              height: "10px",
               borderRadius: "50%",
               background: "oklch(0.7 0.01 0 / 0.4)",
             }}
             initial={{ y: 0, opacity: 0.6, scale: 1 }}
-            animate={{ y: -80, opacity: 0, scale: 2.5 }}
-            transition={{ duration: 2, ease: "easeOut" }}
+            animate={{ y: -100, opacity: 0, scale: 3 }}
+            transition={{ duration: 2.5, ease: "easeOut", repeat: 1 }}
           />
           <motion.div
             className="absolute"
             style={{
-              left: "calc(50% + 12px)",
-              top: "20px",
-              width: "8px",
-              height: "8px",
+              left: "calc(50% + 18px)",
+              top: "30px",
+              width: "10px",
+              height: "10px",
               borderRadius: "50%",
               background: "oklch(0.7 0.01 0 / 0.4)",
             }}
             initial={{ y: 0, opacity: 0.6, scale: 1 }}
-            animate={{ y: -80, opacity: 0, scale: 2.5 }}
-            transition={{ duration: 2, delay: 0.2, ease: "easeOut" }}
+            animate={{ y: -100, opacity: 0, scale: 3 }}
+            transition={{ duration: 2.5, delay: 0.3, ease: "easeOut", repeat: 1 }}
           />
         </>
       )}
