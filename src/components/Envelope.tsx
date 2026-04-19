@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import stampPhoto from "@/assets/stamp-photo.jpg";
 
 interface EnvelopeProps {
   letterContent: React.ReactNode;
