@@ -71,27 +71,23 @@ export function Envelope({ letterContent }: EnvelopeProps) {
                 >
                   {/* Stamp */}
                   <div
-                    className="absolute right-5 top-5 flex items-center justify-center"
+                    className="absolute right-5 top-5 overflow-hidden"
                     style={{
-                      width: "58px",
-                      height: "70px",
-                      background:
-                        "linear-gradient(135deg, oklch(0.92 0.06 15) 0%, oklch(0.82 0.10 15) 100%)",
-                      border: "2px dashed oklch(0.99 0.01 80)",
+                      width: "62px",
+                      height: "76px",
+                      padding: "4px",
+                      background: "oklch(0.99 0.005 80)",
+                      border: "1px dashed oklch(0.78 0.04 25 / 0.55)",
                       borderRadius: "3px",
-                      boxShadow: "0 2px 6px oklch(0 0 0 / 0.15)",
+                      boxShadow: "0 2px 6px oklch(0 0 0 / 0.18)",
                     }}
                   >
-                    <div
-                      style={{
-                        fontFamily: "var(--font-script)",
-                        fontSize: "1.8rem",
-                        color: "oklch(0.99 0.01 80)",
-                        lineHeight: 1,
-                      }}
-                    >
-                      ♡
-                    </div>
+                    <img
+                      src={stampPhoto}
+                      alt="Sofia and Adele"
+                      className="h-full w-full object-cover"
+                      style={{ borderRadius: "1px" }}
+                    />
                   </div>
 
                   {/* Postmark circle */}
