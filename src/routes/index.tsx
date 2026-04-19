@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Balloons, Confetti } from "@/components/Balloons";
 import { Envelope } from "@/components/Envelope";
+import { Cake } from "@/components/Cake";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -37,7 +38,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-type Scene = "greeting" | "tease" | "envelope";
+type Scene = "greeting" | "tease" | "candles" | "envelope";
 
 function Index() {
   const [scene, setScene] = useState<Scene>("greeting");
@@ -50,18 +51,21 @@ function Index() {
 
   const advance = () => {
     if (scene === "greeting") setScene("tease");
-    else if (scene === "tease") setScene("envelope");
+    else if (scene === "tease") setScene("candles");
+    else if (scene === "candles") setScene("envelope");
   };
+
+  const isInteractive = scene !== "envelope" && scene !== "candles";
 
   return (
     <main
       className="relative h-screen w-screen overflow-hidden"
       style={{ background: "var(--gradient-sunset)" }}
-      onClick={scene !== "envelope" ? advance : undefined}
-      role={scene !== "envelope" ? "button" : undefined}
-      tabIndex={scene !== "envelope" ? 0 : -1}
+      onClick={isInteractive ? advance : undefined}
+      role={isInteractive ? "button" : undefined}
+      tabIndex={isInteractive ? 0 : -1}
       onKeyDown={(e) => {
-        if (scene !== "envelope" && (e.key === "Enter" || e.key === " ")) advance();
+        if (isInteractive && (e.key === "Enter" || e.key === " ")) advance();
       }}
     >
       <Balloons count={20} />
@@ -168,6 +172,19 @@ function Index() {
                 (tap to see ♡)
               </motion.div>
             </div>
+          </motion.section>
+        )}
+
+        {scene === "candles" && (
+          <motion.section
+            key="candles"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8 }}
+            className="relative z-10 h-full w-full"
+          >
+            <Cake onBlownOut={() => setScene("envelope")} />
           </motion.section>
         )}
 
