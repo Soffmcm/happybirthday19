@@ -201,12 +201,7 @@ function LetterContent() {
         >
           Happy 19th Birthday my lovee,
         </div>
-        <div
-          className="mt-2 text-xs tracking-[0.3em] uppercase"
-          style={{ opacity: 0.5 }}
-        >
-          I hope it's a really good one
-        </div>
+
       </header>
 
       <div
@@ -263,11 +258,7 @@ function LetterContent() {
         </p>
         <p>
           Okay okay I’ll stop being so cheesy and corny now lmfao, happy 19th birthday baby,
-          I love you so much, and I hope you have a day as amazing as you are in my eyes.❤️
-        </p>
-        <p>
-          - Sofia❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️
-        </p>
+          I love you so much, and I hope you have a day as amazing as you are in my eyes.❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️
         <p>
           (P.S. I’m really glad your parents forgot to use protection 19 years and 9 months ago)
         </p>
@@ -281,7 +272,7 @@ function LetterContent() {
             marginTop: "1.5rem",
           }}
         >
-          Forever yours ♡
+          Sofia ♡
         </p>
       </div>
 
