@@ -29,7 +29,7 @@ export function Cake({ onBlownOut }: CakeProps) {
   useEffect(() => {
     if (progress >= 100 && !blownOut) {
       setBlownOut(true);
-      const t = setTimeout(() => onBlownOut(), 1600);
+      const t = setTimeout(() => onBlownOut(), 3000);
       return () => clearTimeout(t);
     }
   }, [progress, blownOut, onBlownOut]);
