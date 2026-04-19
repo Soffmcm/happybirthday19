@@ -150,7 +150,7 @@ function Index() {
               >
                 I made you
                 <br />
-                something...
+                something
                 <span style={{ color: "var(--rose)" }}>...</span>
               </motion.h2>
 
@@ -277,9 +277,7 @@ function LetterContent() {
         </p>
       </div>
 
-      <div className="pt-4 text-center text-xs tracking-[0.3em] uppercase" style={{ opacity: 0.4 }}>
-        — placeholder, real letter coming soon —
-      </div>
+
     </article>
   );
 }
