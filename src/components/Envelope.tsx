@@ -68,13 +68,14 @@ export function Envelope({ letterContent }: EnvelopeProps) {
                     transformOrigin: "center center",
                   }}
                 >
+                  {/* Stamp */}
                   <div
-                    className="absolute right-4 top-4 flex items-center justify-center"
+                    className="absolute right-5 top-5 flex items-center justify-center"
                     style={{
-                      width: "62px",
-                      height: "76px",
+                      width: "58px",
+                      height: "70px",
                       background:
-                        "linear-gradient(135deg, oklch(0.92 0.08 20) 0%, oklch(0.78 0.16 15) 100%)",
+                        "linear-gradient(135deg, oklch(0.92 0.06 15) 0%, oklch(0.82 0.10 15) 100%)",
                       border: "2px dashed oklch(0.99 0.01 80)",
                       borderRadius: "3px",
                       boxShadow: "0 2px 6px oklch(0 0 0 / 0.15)",
@@ -92,34 +93,119 @@ export function Envelope({ letterContent }: EnvelopeProps) {
                     </div>
                   </div>
 
+                  {/* Postmark circle */}
                   <div
-                    className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center"
+                    className="absolute flex items-center justify-center text-center"
                     style={{
+                      right: "84px",
+                      top: "18px",
+                      width: "62px",
+                      height: "62px",
+                      borderRadius: "50%",
+                      border: "1px solid oklch(0.55 0.08 25 / 0.45)",
+                      color: "oklch(0.55 0.08 25 / 0.55)",
+                      fontFamily: "var(--font-display)",
+                      fontSize: "7px",
+                      letterSpacing: "0.15em",
+                      textTransform: "uppercase",
+                      transform: "rotate(-12deg)",
+                      lineHeight: 1.3,
+                    }}
+                  >
+                    <div>
+                      with<br />love<br />♡ 2026 ♡
+                    </div>
+                  </div>
+
+                  {/* To / From address block */}
+                  <div
+                    className="absolute"
+                    style={{
+                      left: "12%",
+                      top: "42%",
+                      right: "12%",
                       fontFamily: "var(--font-script)",
                       color: "var(--ink)",
                     }}
                   >
-                    <div style={{ fontSize: "clamp(1.5rem, 4.5vw, 2.4rem)", lineHeight: 1.1 }}>
-                      To my love
+                    <div
+                      className="flex items-baseline gap-2"
+                      style={{ fontSize: "clamp(1.1rem, 3vw, 1.6rem)" }}
+                    >
+                      <span
+                        className="uppercase"
+                        style={{
+                          fontFamily: "var(--font-display)",
+                          fontSize: "0.65rem",
+                          letterSpacing: "0.3em",
+                          opacity: 0.55,
+                        }}
+                      >
+                        To:
+                      </span>
+                      <span style={{ lineHeight: 1.1 }}>Adele</span>
                     </div>
                     <div
-                      className="mx-auto mt-2"
+                      className="mt-1"
                       style={{
-                        width: "60%",
                         height: "1px",
-                        background: "oklch(0.4 0.05 30 / 0.3)",
+                        background: "oklch(0.4 0.05 30 / 0.25)",
                       }}
                     />
+                  </div>
+
+                  {/* From */}
+                  <div
+                    className="absolute"
+                    style={{
+                      left: "12%",
+                      bottom: "14%",
+                      right: "12%",
+                      fontFamily: "var(--font-script)",
+                      color: "var(--ink)",
+                    }}
+                  >
                     <div
-                      className="mt-2 text-[10px] tracking-[0.4em] uppercase"
-                      style={{
-                        fontFamily: "var(--font-display)",
-                        color: "var(--rose)",
-                        opacity: 0.85,
-                      }}
+                      className="flex items-baseline gap-2 flex-wrap"
+                      style={{ fontSize: "clamp(0.95rem, 2.4vw, 1.25rem)" }}
                     >
-                      open me ♡
+                      <span
+                        className="uppercase"
+                        style={{
+                          fontFamily: "var(--font-display)",
+                          fontSize: "0.6rem",
+                          letterSpacing: "0.3em",
+                          opacity: 0.55,
+                        }}
+                      >
+                        From:
+                      </span>
+                      <span style={{ lineHeight: 1.15 }}>
+                        Sofia{" "}
+                        <span style={{ opacity: 0.7, fontSize: "0.85em" }}>
+                          (aka the love of your life)
+                        </span>
+                      </span>
                     </div>
+                    <div
+                      className="mt-1"
+                      style={{
+                        height: "1px",
+                        background: "oklch(0.4 0.05 30 / 0.25)",
+                      }}
+                    />
+                  </div>
+
+                  {/* Open hint */}
+                  <div
+                    className="absolute bottom-3 left-1/2 -translate-x-1/2 text-[9px] tracking-[0.4em] uppercase"
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      color: "var(--rose)",
+                      opacity: 0.75,
+                    }}
+                  >
+                    open me ♡
                   </div>
                 </motion.div>
               ) : (
