@@ -218,22 +218,60 @@ function LetterContent() {
         className="space-y-4"
       >
         <p>
-          Today the world gets to celebrate the same person I get to celebrate every single day —
-          and somehow that feels both unfair and exactly right.
+          I know you don't really like your birthday or celebrating it and I’m sorry 
+          I can't be there with you right now to show you how much you deserve to be celebrated in a day as special as you
+          (and you're really special to me). But don't worry, there's nothing I want more than to be there with you next year 
+          and to show you how much better this day can be and to hopefully give you one of the best birthdays ever 
+          (I also hope you know I'll be trying to one-up myself each year). 
         </p>
         <p>
-          Nineteen years ago, the universe quietly did the kindest thing it has ever done for me. It
-          made you. And every laugh, every silly conversation, every quiet moment we share is proof
-          that some things really are meant to be.
+          But overall, I hope you have an amazing day because you really do deserve it and even though I’m not there I hope 
+          I can play even the smallest role in make this day a little bit more special. 
         </p>
         <p>
-          You make ordinary days feel like something worth remembering. You make me braver, softer,
-          and more myself all at once. There is nowhere I'd rather be than wherever you are.
+          I love you sososososooooooooo much and no matter how many times I say it, it still feels like I don’t say it enough.
+          But I need you to know that I love you more than I thought was even possible, more than words could ever express, 
+          and that my love for you only grows more and more each day. I am so lucky to be able
+          to say that someone so kind, beautiful, thoughtful, smart, funny, amazing…. (and so much more)
+          is MY GIRLFRIEND HEHEHEHEHEHE
         </p>
         <p>
-          So happy birthday, my love. Here's to nineteen, to us, and to every adventure still
-          waiting for us.
+          ...and honestly the only thing that can top that will be when I get to call you my wife instead. 
+          Because I will marry you. And that’s final. 
         </p>
+        <p>
+          But what I’m trying to say is that you are perfect. And I don’t mean it in a ‘lacking imperfections’ 
+          way because “nobody’s prefect” or whatever, I mean it in a ‘You’re perfect for me’ type of way. 
+          Because no matter how many ‘flaws’ you think you have in my eyes they couldn’t be further from that, 
+          and I truly think that you are my person, and the only person I want to spend the rest of my life with. 
+        </p>
+        <p>
+          When I’m with you I feel seen, and not just in the physical way or the acknowledged way, but 
+          I feel like you see me at a much deeper level, one that words couldn’t describe. 
+          You make me feel so safe and always push me to be the best version of myself possible 
+          (even making me eat vegetables and like drink water. Which is insane btw…)  and you mean so much to me that 
+          I’d be completely lost without you. 
+        </p>
+        <p>
+          Whenever I think about my future, its impossible to leave you out the picture,
+          all I want in life is to build a life by your side, and to be there to witness
+          the many more birthdays you have to come, and to make each and every one of them feel different and 
+          special, and to make you see how much you deserve not only to be noticed and celebrated, 
+          but appreciated, valued, cared for and so much more. I want to be able to give you the world someday, 
+          but even then, it wouldn’t be enough to represent how much you mean to me and all that you deserve to 
+          have and accomplish in life.
+        </p>
+        <p>
+          Okay okay I’ll stop being so cheesy and corny now lmfao, happy 19th birthday baby,
+          I love you so much, and I hope you have a day as amazing as you are in my eyes.❤️
+        </p>
+        <p>
+          - Sofia❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️
+        </p>
+        <p>
+          (P.S. I’m really glad your parents forgot to use protection 19 years and 9 months ago)
+        </p>
+
         <p
           style={{
             fontFamily: "var(--font-script)",
